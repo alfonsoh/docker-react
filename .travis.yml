@@ -6,13 +6,13 @@ before_install:
   - docker build -t alfonsohooker/docker-react -f Dockerfile.dev . 
 
 script:
-  - docker run alfonsohooker/docker-react npm run test -- --coverage
+  - docker run -e CI=true alfonsohooker/docker-react npm run test
 deploy:
   edge: true 
   provider: elasticbeanstalk
   region: "us-east-1"
-  app: react-app
-  env: "Reactapp-env"
+  app: "react-app"
+  env: "ReactApp-env"
   bucket_name: "elasticbeanstalk-us-east-1-967195537723"
   bucket_path: "react-app"
   on:
